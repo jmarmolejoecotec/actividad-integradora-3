@@ -12,7 +12,7 @@
 
         <div class="formulario">
             <h2>Nuevo Producto</h2>
-            <form method="POST" action="">
+            <form method="POST" action="" onsubmit="return validarFormulario()">
                 <div class="campo">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre">
@@ -37,5 +37,7 @@
             </form>
         </div>
     </div>
+
+    <script src="../../js/script.js"></script>
 </body>
 </html>
