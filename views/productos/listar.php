@@ -10,6 +10,14 @@
     <div class="contenedor">
         <h1>Catalogo de Productos</h1>
 
+        <?php if ($mensaje): ?>
+            <div class="mensaje exito"><?php echo $mensaje; ?></div>
+        <?php endif; ?>
+        
+        <?php if ($error): ?>
+            <div class="mensaje error"><?php echo $error; ?></div>
+        <?php endif; ?>
+
         <div class="formulario">
             <h2>Nuevo Producto</h2>
             <form method="POST" action="" onsubmit="return validarFormulario()">
@@ -35,6 +43,38 @@
 
                 <button type="submit" class="boton">Guardar</button>
             </form>
+        </div>
+
+        <div class="tabla">
+            <h2>Productos Registrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (empty($productos)): ?>
+                        <tr>
+                            <td colspan="5">No hay productos registrados</td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($productos as $prod): ?>
+                            <tr>
+                                <td><?php echo $prod->id; ?></td>
+                                <td><?php echo $prod->nombre; ?></td>
+                                <td><?php echo $prod->descripcion; ?></td>
+                                <td>$<?php echo number_format($prod->precio, 2); ?></td>
+                                <td><?php echo $prod->cantidad; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 

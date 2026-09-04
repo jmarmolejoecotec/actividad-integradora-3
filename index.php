@@ -1,3 +1,3 @@
 <?php
-require_once 'views/productos/listar.php';
+require_once 'controllers/ProductoController.php';
 ?>
