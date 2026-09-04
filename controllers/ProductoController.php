@@ -7,6 +7,7 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $producto = new Producto();
     $producto->nombre = $_POST['nombre'];
+    $producto->categoria = $_POST['categoria'];
     $producto->descripcion = $_POST['descripcion'];
     $producto->precio = $_POST['precio'];
     $producto->cantidad = $_POST['cantidad'];

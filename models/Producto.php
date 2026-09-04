@@ -4,13 +4,15 @@ require_once __DIR__ . '/../config/conexion.php';
 class Producto {
     public $id;
     public $nombre;
+    public $categoria;
     public $descripcion;
     public $precio;
     public $cantidad;
 
-    public function __construct($id = null, $nombre = '', $descripcion = '', $precio = 0, $cantidad = 0) {
+    public function __construct($id = null, $nombre = '', $categoria = '', $descripcion = '', $precio = 0, $cantidad = 0) {
         $this->id = $id;
         $this->nombre = $nombre;
+        $this->categoria = $categoria;
         $this->descripcion = $descripcion;
         $this->precio = $precio;
         $this->cantidad = $cantidad;
@@ -18,9 +20,9 @@ class Producto {
 
     public function guardar() {
         global $conexion;
-        $sql = "INSERT INTO productos (nombre, descripcion, precio, cantidad) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO productos (nombre, categoria, descripcion, precio, cantidad) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("ssdi", $this->nombre, $this->descripcion, $this->precio, $this->cantidad);
+        $stmt->bind_param("sssdi", $this->nombre, $this->categoria, $this->descripcion, $this->precio, $this->cantidad);
         return $stmt->execute();
     }
 
@@ -33,6 +35,7 @@ class Producto {
             $productos[] = new Producto(
                 $fila['id'],
                 $fila['nombre'],
+                $fila['categoria'],
                 $fila['descripcion'],
                 $fila['precio'],
                 $fila['cantidad']
@@ -53,6 +56,7 @@ class Producto {
             return new Producto(
                 $fila['id'],
                 $fila['nombre'],
+                $fila['categoria'],
                 $fila['descripcion'],
                 $fila['precio'],
                 $fila['cantidad']

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalogo de Productos</title>
-    <link rel="stylesheet" href="../../css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
     <div class="contenedor">
-        <h1>Catalogo de Productos</h1>
+        <h1>Formulario de registro</h1>
 
         <?php if ($mensaje): ?>
             <div class="mensaje exito"><?php echo $mensaje; ?></div>
@@ -19,29 +19,40 @@
         <?php endif; ?>
 
         <div class="formulario">
-            <h2>Nuevo Producto</h2>
             <form method="POST" action="" onsubmit="return validarFormulario()">
                 <div class="campo">
-                    <label for="nombre">Nombre:</label>
+                    <label for="nombre">Nombre del producto</label>
                     <input type="text" id="nombre" name="nombre">
                 </div>
 
                 <div class="campo">
-                    <label for="descripcion">Descripcion:</label>
-                    <textarea id="descripcion" name="descripcion"></textarea>
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" name="categoria">
+                        <option value="">Seleccionar...</option>
+                        <option value="tecnologia">Tecnología</option>
+                        <option value="ropa">Ropa</option>
+                        <option value="alimentos">Alimentos</option>
+                        <option value="hogar">Hogar</option>
+                        <option value="otros">Otros</option>
+                    </select>
                 </div>
 
                 <div class="campo">
-                    <label for="precio">Precio:</label>
+                    <label for="precio">Precio</label>
                     <input type="number" id="precio" name="precio" step="0.01" min="0">
                 </div>
 
                 <div class="campo">
-                    <label for="cantidad">Cantidad:</label>
+                    <label for="cantidad">Cantidad</label>
                     <input type="number" id="cantidad" name="cantidad" min="0">
                 </div>
 
-                <button type="submit" class="boton">Guardar</button>
+                <div class="campo">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="boton-guardar">Guardar producto</button>
             </form>
         </div>
 
@@ -52,7 +63,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Descripcion</th>
+                        <th>Categoría</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
                     </tr>
@@ -67,7 +78,7 @@
                             <tr>
                                 <td><?php echo $prod->id; ?></td>
                                 <td><?php echo $prod->nombre; ?></td>
-                                <td><?php echo $prod->descripcion; ?></td>
+                                <td><?php echo $prod->categoria; ?></td>
                                 <td>$<?php echo number_format($prod->precio, 2); ?></td>
                                 <td><?php echo $prod->cantidad; ?></td>
                             </tr>
@@ -78,6 +89,6 @@
         </div>
     </div>
 
-    <script src="../../js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
